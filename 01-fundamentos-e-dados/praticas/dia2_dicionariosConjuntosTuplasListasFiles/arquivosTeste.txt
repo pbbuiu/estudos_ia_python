@@ -1,0 +1,2 @@
+Esse é o meu primeiro arquivo.
+Estou aprendendo tecnicas para manipular e também conseguir extrair textos em arquivos
