@@ -1,0 +1,9 @@
+              Modelo  Acuracia  Precision  Recall  Custo_USD  RAM_GB Status
+0           ResNet50      0.92       0.90    0.88       12.5       8     OK
+1          BERT_Base      0.88       0.86    0.84       45.0      16     OK
+2       RandomForest      0.74       0.72    0.70        1.2       4     OK
+3          CNN_Light      0.65       0.62    0.58        0.8       2  FALHA
+4          Llama3_8B      0.95       0.94    0.92       80.0      32     OK
+5            XGBoost      0.83       0.81    0.80        3.5       4     OK
+6            SVM_RBF      0.58       0.55    0.50        0.5       2  FALHA
+7  VisionTransformer      0.91       0.89    0.90       55.0      24     OK

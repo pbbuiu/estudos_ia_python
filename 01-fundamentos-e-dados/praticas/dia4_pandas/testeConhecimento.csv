@@ -1,0 +1,8 @@
+Modelo;Acuracia;F1_Score;Tempo_Treino_Min;Status
+ResNet50;0.92;0.89;120;Sucesso
+BERT;0.88;0.85;180;Sucesso
+RandomForest;0.74;0.71;15;Sucesso
+CNN_v1;0.65;0.60;45;Erro
+Llama3;0.95;0.93;300;Sucesso
+XGBoost;0.82;0.79;30;Sucesso
+SVM;0.58;0.52;10;Erro

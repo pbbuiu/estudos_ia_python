@@ -1,0 +1,9 @@
+Modelo	Acuracia	Precision	Recall	Custo_USD	RAM_GB	Status	Categoria	Custo_Por_RAM
+ResNet50	0.92	0.9	0.88	12.5	8	OK	Alta performance	1.5625
+BERT_Base	0.88	0.86	0.84	45.0	16	OK	Alta performance	2.8125
+RandomForest	0.74	0.72	0.7	1.2	4	OK	Performance regular	0.3
+CNN_Light	0.65	0.62	0.58	0.8	2	FALHA	Performance regular	0.4
+Llama3_8B	0.95	0.94	0.92	80.0	32	OK	Alta performance	2.5
+XGBoost	0.83	0.81	0.8	3.5	4	OK	Performance regular	0.875
+SVM_RBF	0.58	0.55	0.5	0.5	2	FALHA	Performance regular	0.25
+VisionTransformer	0.91	0.89	0.9	55.0	24	OK	Alta performance	2.2916666666666665
