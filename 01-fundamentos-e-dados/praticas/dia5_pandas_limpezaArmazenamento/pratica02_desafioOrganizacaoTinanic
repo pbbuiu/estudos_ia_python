@@ -1,0 +1,72 @@
+#Nesse desafio iremos tester todas as habilidades de limpeza e organização de dados que aprendemos utilizando o Pandas
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv("Relatorio_20263207.csv")
+print(df.head())
+
+#url do repositorio do arquivo com todos os dados do titanic
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+
+#lendo o arquivo com a url 
+titanic_df = pd.read_csv(url, dtype='U', na_values=["N/A", '', 'Unknown', 'NA'])
+
+#convertendo as idades para numero e arredondando para uma casa decimal
+titanic_df['Age'] = pd.to_numeric(titanic_df['Age'], errors='coerce', downcast='integer') #não converte para inteiro se tiver NaN porque os NaN são float64
+titanic_df['Age'] = np.round(titanic_df['Age'], 1)
+
+
+titanic_df['Age'] = titanic_df['Age'].fillna(titanic_df['Age'].mean())
+
+
+#limpando dados NaN de Embarked e Cabin
+titanic_df['Embarked'] = titanic_df['Embarked'].fillna("Desconhecido")
+titanic_df['Cabin'] = titanic_df['Cabin'].fillna("Sem cabine")
+
+#Todos os dados NaN foram tratados.
+
+#Colocando nova coluna: 'Sobrenome' e 'Titulos honorificos'
+titanic_df['Last_Name'] = titanic_df['Name'].str.split(',').str.get(0)
+titanic_df['Honorifics'] = titanic_df['Name'].str.split('.').str.get(0).str.split(',').str.get(1).str.strip()
+
+#Mulheres com honorifico 'Miss'
+miss_passenger = titanic_df.loc[(titanic_df['Sex'].str.contains('female')) & (titanic_df['Honorifics'].str.contains('Miss'))]
+
+#Transformando o Survived e Fare em números
+titanic_df['Survived'] = pd.to_numeric(titanic_df['Survived'], downcast='integer')
+titanic_df['Fare'] = pd.to_numeric(titanic_df['Fare'], downcast='integer')
+
+#Grupo Pclass/Sex: Mean(Survived, Fare)
+class_sex_mean = titanic_df.groupby(['Pclass', 'Sex'])[['Survived', 'Fare']].agg({'Survived': ['mean'], 'Fare': ['mean']})
+print(class_sex_mean)
+
+sex_mean = titanic_df.groupby(['Sex'])[['Survived', 'Fare']].agg({'Survived': ['mean'], 'Fare': ['mean']})
+print(sex_mean)
+#Grupo Honorifics: Mean(Age) Count(Pessoas)
+honirifics_age_id = titanic_df.groupby(['Honorifics'])[['Age', 'PassengerId']].agg({'Age': 'mean', 'PassengerId': 'count'})
+
+#Grupo pessoas que morreram com menos de 10 anos
+young_people = titanic_df.loc[titanic_df['Age'] < 15]
+dead_child = young_people.groupby(['Survived', 'Sex'])['Age'].agg(['mean', 'count'])
+
+#Ordenando e exportanto
+titanic_df = titanic_df.sort_values('Fare')
+titanic_df.to_csv("tatinic_clear.csv", index=False)
+
+# print(titanic_df)
+# print(dead_child)
+# print(honirifics_age_id)
+# print(class_sex_mean)
+# print(miss_passenger)
+# print(titanic_df.head(2))
+# print(titanic_df.describe())
+# print(titanic_df["Embarked"].unique())
+# print(titanic_df["Ticket"].nunique())
+# print(titanic_df.isna().sum(axis=0))
+
+
+
+
+
+

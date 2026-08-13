@@ -1,0 +1,3 @@
+Total de linhas da tabela unificada:110173
+Tempo medio de entregas em dias:12.00689824185599
+Faturamento liquido da empresa:15416246.25
